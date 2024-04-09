@@ -18,8 +18,8 @@ public class Gamemode : MonoBehaviour
     public Animator animator;
     public int spawnCount;
     public int foodCount;
-    int maxFood = 35;
-    int maxAI = 10;
+    int maxFood = 75;
+    int maxAI = 25;
     //single defintion for each item
     GameObject animalprefab;
     GameObject foodprefab;
@@ -34,60 +34,63 @@ public class Gamemode : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+      {
 
-        if(foodCount < maxFood)
-        {
-            int randomFood = Random.Range(0, foodPrefabs.Length -1); // rand number animal prefab chooser
-            GameObject newSpawn = foodPrefabs[randomFood]; // sets the new spawn
-            Vector3 spawnPos = spawnpoints[Random.Range(0, spawnpoints.Length -1)].position; // set spawn pos of new spawn
-            foodprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns 
-            foodCount++; // increase increment
-           
-        }
-        
+          if(foodCount < maxFood)
+          {
+              int randomFood = Random.Range(0, foodPrefabs.Length -1); // rand number animal prefab chooser
+              GameObject newSpawn = foodPrefabs[randomFood]; // sets the new spawn
+              Vector3 spawnPos = spawnpoints[Random.Range(0, spawnpoints.Length -1)].position; // set spawn pos of new spawn
+              foodprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns 
+              foodCount++; // increase increment
+
+          }
+
         /*if(thrown == true delete object -- food count)
         {
-            foreach (var fooditem in foodPrefabs)
-            {
-                foodCount--;
-                if (foodCount < 0) { foodCount = 0; }
-                Destroy(foodprefab);
-            }
+          
+            
         }*/
 
 
 
         if (spawnCount < maxAI)
         {
-            
+
             int randomAnimal = Random.Range(0, animalPrefabs.Length - 1); // rand number animal prefab chooser
             GameObject newSpawn = animalPrefabs[randomAnimal]; // sets the new spawn
             Vector3 spawnPos = RandomSpawnpoint(); // set spawn pos of new spawn
-            animalprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns 
-            spawnCount++; // increase increment
+            animalprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns the object
             if (gameObject.CompareTag("Dog"))
             {
-                spawnCount--; // removes dogs from animal count allowing freeflowing animals in theroy and unlimited dogs.
+                // removes dogs from animal count allowing freeflowing animals in theroy and unlimited dogs. dogs despawn after 25s or until dead
+                Destroy(gameObject, 25);
+                spawnCount--;
+            } else {
+                spawnCount++;
             }
             if (animator != null)
             {
                 animator.SetFloat("Speed_f", 1f);
-            }
-        }
-        
-        if (movementLimiter(animalprefab))
-        { 
-            foreach (var animal in animalPrefabs)
-            {
-                spawnCount--;
-                if (spawnCount < 0) {  spawnCount = 0; }
-                Destroy(animalprefab);
+                // increase increment of spawn count only for animals
+                
             }
         }
 
-    }
+        if (movementLimiter(animalprefab))
+          { 
+              foreach (var animal in animalPrefabs)
+              {
+                  spawnCount--;
+                  if (spawnCount < 0) {  spawnCount = 0; }
+                  Destroy(animalprefab);
+              }
+          }
+
+      }
     
+
+   
     public void AddPoints(int pointstoadd)
     {
         totalScore += pointstoadd;

@@ -8,6 +8,7 @@ TagManager:
   - Animal
   - Food
   - Projectile
+  - Floor
   layers:
   - Default
   - TransparentFX

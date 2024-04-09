@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public float throwVel;
     float hozInput;
     float health;
-    public float maxHealth;
+    public float maxHealth = 3;
     float verInput;
     public float xMax;
     public float xMin;
@@ -117,16 +117,13 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("detected collsion  with" + col.gameObject.tag); // code gets to here says everything is untagged
-
-        if (col.gameObject.CompareTag("Animal"))
+       
+        if (col.gameObject.tag == "Animal" || col.gameObject.tag == "Dog")
         {
+            setHealth(1);
             Debug.Log("Game Lost");
         }
-        if (col.gameObject.CompareTag("Dog"))
-        {
-            Debug.Log("Game Lost");
-        }
+        
 
 
     }

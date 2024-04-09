@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: -8773761467836728994}
   - component: {fileID: 6182559339805122341}
   - component: {fileID: 4733165085406977393}
+  - component: {fileID: 2891903153202280381}
   m_Layer: 0
   m_Name: Animal_Stag_02
   m_TagString: Animal
@@ -544,6 +545,27 @@ MonoBehaviour:
   aiPrefab: {fileID: 0}
   player: {fileID: 0}
   playerPos: {fileID: 0}
+--- !u!65 &2891903153202280381
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142896}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.19248576, y: 0.45084217, z: 0.4088874}
+  m_Center: {x: 0.021242857, y: 0.22562326, z: 0.06957227}
 --- !u!1 &150452
 GameObject:
   m_ObjectHideFlags: 0

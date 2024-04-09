@@ -44,7 +44,7 @@ public class AI : MonoBehaviour
         {
             //finds all game objects tagged food
             GameObject[] foodObjects = GameObject.FindGameObjectsWithTag("Food");
-            Debug.Log("filled foodobject array for dogs to targert");
+           
             // if the array has items within it
             if (foodObjects.Length -1 > 0)
             {
@@ -53,7 +53,7 @@ public class AI : MonoBehaviour
 
                 //set the target of the dog ai to the target foodobject 
                 agent.destination = foodObjects[tar].transform.position;
-                Debug.Log("Set dog target");
+                
             }
         }
         else

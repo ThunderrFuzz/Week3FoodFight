@@ -4424,6 +4424,7 @@ GameObject:
   - component: {fileID: -7960280325954867080}
   - component: {fileID: -789386628121003894}
   - component: {fileID: 3294576655933620971}
+  - component: {fileID: 2160177252286796872}
   m_Layer: 0
   m_Name: Dog_SaintBernard_01
   m_TagString: Dog
@@ -4557,6 +4558,27 @@ MonoBehaviour:
   aiPrefab: {fileID: 0}
   player: {fileID: 0}
   playerPos: {fileID: 0}
+--- !u!65 &2160177252286796872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179218}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.15, y: 0.19979785, z: 0.26710823}
+  m_Center: {x: 0, y: 0.100101225, z: 0.03355409}
 --- !u!1 &180846
 GameObject:
   m_ObjectHideFlags: 0
