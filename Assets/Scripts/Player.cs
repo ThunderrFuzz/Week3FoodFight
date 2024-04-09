@@ -4,7 +4,9 @@ using System.Xml.Schema;
 using Unity.VisualScripting;
 using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 //i doubt i need all of those namespaces. 
 
@@ -21,13 +23,19 @@ public class Player : MonoBehaviour
     public float speed;
     public float throwVel;
     float hozInput;
+    float health;
+    public float maxHealth;
     float verInput;
     public float xMax;
     public float xMin;
     public float zMax;
     public float zMin;
     public Animator playerAnim;
-    
+    public GameObject projectile;
+    public GameObject[] projectiles;
+    public Vector3 projOffset;
+    public float projectileLifespan;
+    int ammo;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +55,7 @@ public class Player : MonoBehaviour
 
         hozInput = Input.GetAxis("Horizontal"); //x axis
         verInput = Input.GetAxis("Vertical"); //z axis
-        
 
-
-        
         //JUMPING 
         if (Input.GetKeyDown(KeyCode.Space) && !playerAnim.GetBool("Jump_b")) 
         {
@@ -65,13 +70,36 @@ public class Player : MonoBehaviour
             playerAnim.SetBool("Jump_b", false); // reset animator state 
             
         }
-
+       
 
         //sets rotation based on move direction
         Vector3 movDir = new Vector3(hozInput, 0f, verInput).normalized; // normalized the vector of X and Z inputs 
+        
         Quaternion desiredRotation = Quaternion.LookRotation(movDir, Vector3.up); // gets the desired rotation from move direction combined with the Y up vector 
         transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 5 * Time.deltaTime); //takes the current rotation, and moves it to the desired rotation i 
         
+        if (Input.GetMouseButtonDown(1))
+        {
+            //mouse 2 picks up 
+            //
+            ammo++;
+            
+        }
+        if (Input.GetMouseButtonDown(0) && ammo > 0)
+        {
+            //mouse 1 fires projectile 
+            //sets instance speed to 30 
+           
+            Vector3 spawnPos = transform.position + projOffset;
+            int rand = Random.Range(0, projectiles.Length-1);
+            GameObject projectileInstance = Instantiate(projectiles[rand], spawnPos, desiredRotation);
+            ammo--;
+            Destroy(projectileInstance, projectileLifespan);
+
+            //grenade throw anim
+            
+        }
+
         //teranry to determine running and walking speed 
         float walkspeed = Input.GetKey(KeyCode.LeftShift) ? speed * 2.5f : speed; // sets walkspeed based on shift running or not
 
@@ -87,8 +115,22 @@ public class Player : MonoBehaviour
         }
        
     }
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("detected collsion  with" + col.gameObject.tag); // code gets to here says everything is untagged
 
-    
+        if (col.gameObject.CompareTag("Animal"))
+        {
+            Debug.Log("Game Lost");
+        }
+        if (col.gameObject.CompareTag("Dog"))
+        {
+            Debug.Log("Game Lost");
+        }
+
+
+    }
+    public void setHealth(int dam) { health -= dam; }
     void movementLimiter()
     {
         // Sets current position to new position capping movement between given ranges

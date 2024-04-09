@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class FoodThrow : MonoBehaviour
 {
+    // picks up spawned food items, and throws 
+    // deal damage 
+    // 
+
+    public int speed;
+    public Player player;
+    public Animator animator;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +23,16 @@ public class FoodThrow : MonoBehaviour
     void Update()
     {
         
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        
+        
+        
+        
     }
+
+
+
+
+   
+
 }
