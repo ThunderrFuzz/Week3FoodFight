@@ -9,6 +9,7 @@ TagManager:
   - Food
   - Projectile
   - Floor
+  - Plate
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Food
   - 
   - 
   - 

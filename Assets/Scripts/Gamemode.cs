@@ -20,6 +20,7 @@ public class Gamemode : MonoBehaviour
     public int foodCount;
     int maxFood = 75;
     int maxAI = 25;
+    GameObject newSpawn;
     //single defintion for each item
     GameObject animalprefab;
     GameObject foodprefab;
@@ -35,8 +36,12 @@ public class Gamemode : MonoBehaviour
     // Update is called once per frame
     void Update()
       {
+        if (player.getPlayerHealth() < 0)
+        {
+            Debug.Log("Game Lost");
+        }
 
-          if(foodCount < maxFood)
+        if (foodCount < maxFood)
           {
               int randomFood = Random.Range(0, foodPrefabs.Length -1); // rand number animal prefab chooser
               GameObject newSpawn = foodPrefabs[randomFood]; // sets the new spawn
@@ -64,7 +69,7 @@ public class Gamemode : MonoBehaviour
             if (gameObject.CompareTag("Dog"))
             {
                 // removes dogs from animal count allowing freeflowing animals in theroy and unlimited dogs. dogs despawn after 25s or until dead
-                Destroy(gameObject, 25);
+                Destroy(gameObject, 5);
                 spawnCount--;
             } else {
                 spawnCount++;
@@ -82,7 +87,7 @@ public class Gamemode : MonoBehaviour
               foreach (var animal in animalPrefabs)
               {
                   spawnCount--;
-                  if (spawnCount < 0) {  spawnCount = 0; }
+                  
                   Destroy(animalprefab);
               }
           }
@@ -115,7 +120,7 @@ public class Gamemode : MonoBehaviour
     {
         float randX = Random.Range(player.xMax, player.xMin); ;
         float randZ = Random.Range(player.zMax, player.zMax + 59); ;
-        float randY = Random.Range(1f, 1f); // only need one y pos for all of them
+        float randY = Random.Range(0f, 1f); // only need one y pos for all of them
         return new Vector3(randX, randY, randZ);
     }
 }

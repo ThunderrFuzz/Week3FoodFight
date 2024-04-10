@@ -77,8 +77,5 @@ public class AI : MonoBehaviour
 
     
     
-    void pathfind()
-    {
-
-    }
+    
 }

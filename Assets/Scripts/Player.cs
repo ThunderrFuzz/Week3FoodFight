@@ -1,14 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Schema;
-using Unity.VisualScripting;
-using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
-//i doubt i need all of those namespaces. 
+
 
 /*
  player features: 
@@ -19,23 +12,33 @@ using UnityEngine.UIElements;
  */
 public class Player : MonoBehaviour
 {
+    [Header("Scripts")]
     public FoodThrow foodthrow;
     public float speed;
     public float throwVel;
+    
     float hozInput;
-    float health;
-    public float maxHealth = 3;
+    int health;
+    public int maxHealth = 3;
     float verInput;
+
+    [Header("Bounding Box vars")]
     public float xMax;
     public float xMin;
     public float zMax;
     public float zMin;
+
+    [Header("Projectile Related")]
     public Animator playerAnim;
     public GameObject projectile;
     public GameObject[] projectiles;
+    GameObject heldObject;
     public Vector3 projOffset;
     public float projectileLifespan;
     int ammo;
+    public bool clickedOnFood;
+    int score;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +52,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         // apply gravity to player 
-        
+
         //transform.Translate(Vector3.down * Time.deltaTime);
 
         hozInput = Input.GetAxis("Horizontal"); //x axis
@@ -74,31 +78,46 @@ public class Player : MonoBehaviour
 
         //sets rotation based on move direction
         Vector3 movDir = new Vector3(hozInput, 0f, verInput).normalized; // normalized the vector of X and Z inputs 
-        
-        Quaternion desiredRotation = Quaternion.LookRotation(movDir, Vector3.up); // gets the desired rotation from move direction combined with the Y up vector 
-        transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 5 * Time.deltaTime); //takes the current rotation, and moves it to the desired rotation i 
-        
-        if (Input.GetMouseButtonDown(1))
+        if (movDir.magnitude > 0.001f)
+        {
+            Quaternion desiredRotation = Quaternion.LookRotation(movDir, Vector3.up); // gets the desired rotation from move direction combined with the Y up vector 
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 5 * Time.deltaTime); //takes the current rotation, and moves it to the desired rotation i 
+        }
+        if (Input.GetMouseButtonDown(1) && clickedOnFood)
         {
             //mouse 2 picks up 
             //
-            ammo++;
             
+            
+
         }
         if (Input.GetMouseButtonDown(0) && ammo > 0)
         {
-            //mouse 1 fires projectile 
+            //mouse 1 fires 
+            //set held object to player pos and rotation 
+            heldObject.transform.position = transform.position;
+            heldObject.transform.rotation = transform.rotation;
+            //enables heldobject again
+            heldObject.gameObject.SetActive(true);
+            
+            
             //sets instance speed to 30 
-           
-            Vector3 spawnPos = transform.position + projOffset;
-            int rand = Random.Range(0, projectiles.Length-1);
-            GameObject projectileInstance = Instantiate(projectiles[rand], spawnPos, desiredRotation);
+            heldObject.GetComponent<FoodThrow>().speed = 45;
+            Destroy(heldObject, projectileLifespan);
             ammo--;
-            Destroy(projectileInstance, projectileLifespan);
-
-            //grenade throw anim
             
         }
+        
+
+        /*
+         code goes here for: if clicked on food, 
+        instance heldobject at player postion  
+        display heldobject
+         */
+
+
+      
+
 
         //teranry to determine running and walking speed 
         float walkspeed = Input.GetKey(KeyCode.LeftShift) ? speed * 2.5f : speed; // sets walkspeed based on shift running or not
@@ -120,14 +139,19 @@ public class Player : MonoBehaviour
        
         if (col.gameObject.tag == "Animal" || col.gameObject.tag == "Dog")
         {
-            setHealth(1);
-            Debug.Log("Game Lost");
+            setHealth(1);   
         }
-        
-
-
     }
-    public void setHealth(int dam) { health -= dam; }
+    public void addPoints(int points) {
+        score += points;
+        
+    }
+    public void setHealth(int dam) 
+    { 
+        health -= dam;
+        
+    }
+    public int getPlayerHealth() { return health; }
     void movementLimiter()
     {
         // Sets current position to new position capping movement between given ranges
@@ -159,4 +183,15 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         }
     }
+
+    public void setHeldFood(GameObject newFood)
+    {
+        heldObject = newFood;
+    }
+    public void addAmmo()
+    {
+        ammo++;
+    }
+
+    
 }

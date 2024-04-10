@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2341286}
   - component: {fileID: 6005022348392929559}
   - component: {fileID: 7440581912880431695}
+  - component: {fileID: -7541407152649778688}
   m_Layer: 0
   m_Name: Food_Bone_01
   m_TagString: Projectile
@@ -127,3 +128,17 @@ MonoBehaviour:
   speed: 40
   player: {fileID: 0}
   animator: {fileID: 0}
+--- !u!114 &-7541407152649778688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5458fd4bed828a14e959d96e48fb280f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMaterial: {fileID: 2100000, guid: e25050a7bbbfd624a92e8ff149f2cc67, type: 2}
+  selectionMaterial: {fileID: 2100000, guid: e25050a7bbbfd624a92e8ff149f2cc67, type: 2}

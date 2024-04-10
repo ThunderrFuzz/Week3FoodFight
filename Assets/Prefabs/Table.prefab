@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 2567636366055856365}
   m_Layer: 0
   m_Name: Plate_3 (6)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 406394715034815856}
   m_Layer: 0
   m_Name: Plate_3
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 7110875858241983562}
   m_Layer: 0
   m_Name: Plate_3 (3)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 2297077006768580673}
   m_Layer: 0
   m_Name: Plate_3 (1)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 7286548657812071193}
   m_Layer: 0
   m_Name: Plate_3 (5)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -969,7 +969,7 @@ GameObject:
   - component: {fileID: 7248227179370936115}
   m_Layer: 0
   m_Name: Plate_3 (2)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1180,7 +1180,7 @@ GameObject:
   - component: {fileID: 6259562495171298617}
   m_Layer: 0
   m_Name: Plate_3 (7)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1343,7 +1343,7 @@ GameObject:
   - component: {fileID: 8261002909787610306}
   m_Layer: 0
   m_Name: Plate_3 (4)
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1518,6 +1518,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate_2 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1643,6 +1648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1770,6 +1780,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53b5824647858d64e8975499b200afc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1895,6 +1910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2022,6 +2042,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate_2 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2147,6 +2172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2274,6 +2304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53b5824647858d64e8975499b200afc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2399,6 +2434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2526,6 +2566,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53b5824647858d64e8975499b200afc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2651,6 +2696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2778,6 +2828,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate_2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2903,6 +2958,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: plate (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53b5824647858d64e8975499b200afc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3030,6 +3090,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53b5824647858d64e8975499b200afc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3155,6 +3220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3282,6 +3352,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate_2 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3407,6 +3482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3534,6 +3614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53b5824647858d64e8975499b200afc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3659,6 +3744,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate_2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93c0ffaddb9c7b540b425bcb7df118f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
