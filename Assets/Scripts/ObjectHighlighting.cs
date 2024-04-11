@@ -54,8 +54,8 @@ public class ObjectHighlighting : MonoBehaviour
                 }
             }
         }
-        /*
-         * Selection on click changes material but not needed 
+       
+        /* // Selection on click changes material but not needed 
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (highlight)

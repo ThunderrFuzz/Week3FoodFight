@@ -25,8 +25,9 @@ public class AI : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();    
+        gamemode = FindObjectOfType<Gamemode>();
+        agent = FindObjectOfType<NavMeshAgent>();
+        animator = FindObjectOfType<Animator>();    
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class AI : MonoBehaviour
             animator.SetFloat("Speed_f", 1f);
         }
 
-        speed = Random.Range(6, 12);
+        speed = Random.Range(3, 6);
         transform.Translate(Vector3.forward * speed * Time.deltaTime); //moves
 
         if (agent.CompareTag("Dog"))
@@ -46,7 +47,7 @@ public class AI : MonoBehaviour
             GameObject[] foodObjects = GameObject.FindGameObjectsWithTag("Food");
            
             // if the array has items within it
-            if (foodObjects.Length -1 > 0)
+            if (foodObjects.Length  > 0)
             {
                 //pick a random number
                 int tar = Random.Range(0, foodObjects.Length - 1);
@@ -62,10 +63,23 @@ public class AI : MonoBehaviour
         }
     }
 
-
-    
-    
-
+    void OnCollisionEnter(Collision col)
+    {
+        // Check if the collider's game object is tagged as "Dog"
+        if (col.gameObject.CompareTag("Food"))
+        {
+            // Check if the dog's game object does not have a NavMeshAgent component, meaning it's the dog itself
+            if (col.gameObject.GetComponent<NavMeshAgent>() == null)
+            {
+                // Destroy the food object
+                Destroy(col.gameObject);
+                // Update food count
+                gamemode.foodCount--;
+                gamemode.stolenFood++;
+                Debug.Log("Detected collision between dog and food");
+            }
+        }
+    }
 
     public void takeDamage(int dam)
     {
