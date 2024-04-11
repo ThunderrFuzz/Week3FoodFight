@@ -50,7 +50,7 @@ public class AI : MonoBehaviour
             if (foodObjects.Length  > 0)
             {
                 //pick a random number
-                int tar = Random.Range(0, foodObjects.Length - 1);
+                int tar = Random.Range(0, foodObjects.Length );
 
                 //set the target of the dog ai to the target foodobject 
                 agent.destination = foodObjects[tar].transform.position;
@@ -63,21 +63,16 @@ public class AI : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        // Check if the collider's game object is tagged as "Dog"
-        if (col.gameObject.CompareTag("Food"))
+
+        if (col.tag == "Food")
         {
-            // Check if the dog's game object does not have a NavMeshAgent component, meaning it's the dog itself
-            if (col.gameObject.GetComponent<NavMeshAgent>() == null)
-            {
-                // Destroy the food object
-                Destroy(col.gameObject);
-                // Update food count
-                gamemode.foodCount--;
-                gamemode.stolenFood++;
-                Debug.Log("Detected collision between dog and food");
-            }
+            Destroy(col.gameObject);
+            gamemode.stolenFood++;
+            gamemode.foodCount--;
+
+
         }
     }
 

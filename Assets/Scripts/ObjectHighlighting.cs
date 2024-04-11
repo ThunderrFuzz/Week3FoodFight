@@ -41,16 +41,20 @@ public class ObjectHighlighting : MonoBehaviour
                 highlight = null;
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(1))
             {
                 if (raycastHit.transform.CompareTag("Food"))
                 {
-                    // Set clicked on food true for use elsewhere
-                    player.clickedOnFood = true;
-                    player.addAmmo();
-                    // sets the current held food
-                    player.setHeldFood(raycastHit.transform.gameObject);
-                    raycastHit.transform.gameObject.SetActive(false);
+
+                    if (player.getAmmo() < 1)
+                    {
+                        // Set clicked on food true for use elsewhere
+                        player.clickedOnFood = true;
+                        player.addAmmo();
+                        // sets the current held food
+                        player.setHeldFood(raycastHit.transform.gameObject);
+                        raycastHit.transform.gameObject.SetActive(false);
+                    }
                 }
             }
         }

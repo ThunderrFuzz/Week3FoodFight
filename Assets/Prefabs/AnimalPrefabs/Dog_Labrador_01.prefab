@@ -2432,6 +2432,7 @@ GameObject:
   - component: {fileID: 6637253007131369689}
   - component: {fileID: 6093405269704659034}
   - component: {fileID: 3396531009631435806}
+  - component: {fileID: -5950429776615288435}
   m_Layer: 0
   m_Name: Dog_Labrador_01
   m_TagString: Dog
@@ -2527,6 +2528,7 @@ MonoBehaviour:
   speed: 15
   player: {fileID: 0}
   animator: {fileID: 9520678}
+  gamemode: {fileID: 0}
 --- !u!195 &6637253007131369689
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2580,12 +2582,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.15, y: 0.19979785, z: 0.26710823}
   m_Center: {x: 0, y: 0.100101225, z: 0.03355409}
+--- !u!54 &-5950429776615288435
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140438}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &142034
 GameObject:
   m_ObjectHideFlags: 0

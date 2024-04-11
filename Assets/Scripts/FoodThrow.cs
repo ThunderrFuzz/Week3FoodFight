@@ -29,11 +29,11 @@ public class FoodThrow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dog") || other.gameObject.CompareTag("Animal"))
         {
-            player.addPoints(1);
-            
+            //player.addPoints(5);
+            player.hitAnimals += 5;
             Destroy(other.gameObject);
             gamemode.spawnCount--;
-
+            
             //Debug.Log("added points for hitting animal." );
         }
     }

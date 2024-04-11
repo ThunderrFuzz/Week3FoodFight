@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Gamemode : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class Gamemode : MonoBehaviour
     // spawner of enemies DONE ISH
     // points manager not done
     // 
-    int totalScore;
+    
     //arrays of objects
     public GameObject[] animalPrefabs;
     public GameObject[] foodPrefabs;
@@ -20,9 +22,14 @@ public class Gamemode : MonoBehaviour
     public int spawnCount;
     public int foodCount;
     public int stolenFood;
-    int maxStolenFood = 45;
+    int maxStolenFood = 150;
     int maxFood = 25;
     int maxAI = 10;
+
+    float timeLimit = 60f; // Set the time limit to 60 seconds
+    float currentTime; // Current time remaining
+    float remainingTime;
+    public bool gameLost;
 
     NavMeshAgent agent;
     GameObject newSpawn;
@@ -35,43 +42,61 @@ public class Gamemode : MonoBehaviour
     void Start()
     {
         
-
+        gameLost = false;
+        
     }
 
     // Update is called once per frame
     void Update()
-      {
-        if (player.getPlayerHealth() <= 0 || stolenFood >= maxStolenFood)
-        {
-            Debug.Log("Game Lost");
-        }
+    {
         
 
-        if (foodCount < maxFood )
-          {
-              int randomFood = Random.Range(0, foodPrefabs.Length); // rand number animal prefab chooser
-              GameObject newSpawn = foodPrefabs[randomFood]; // sets the new spawn
-              Vector3 spawnPos = spawnpoints[Random.Range(0, spawnpoints.Length)].position; // set spawn pos of new spawn
-              foodprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns 
-              foodCount++; // increase increment
+       
 
-          }
+        if (gameLost)
+        {
+            Debug.Log("Game Lost");
+            
+            player.enabled = false;
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("SampleScene");
+                player.enabled = true;
+            }
+        }
+        else
+        {
+            lossConditions();
+            player.enabled = true;
+        }
+        //spawn food
+        if (foodCount < maxFood)
+        {
+            int randomFood = Random.Range(0, foodPrefabs.Length); // rand number animal prefab chooser
+            GameObject newSpawn = foodPrefabs[randomFood]; // sets the new spawn
+            Vector3 spawnPos = spawnpoints[Random.Range(0, spawnpoints.Length)].position; // set spawn pos of new spawn
+            foodprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns 
+            foodCount++; // increase increment
 
+        }
+
+        //spawn animals
         if (spawnCount < maxAI)
         {
             int randomAnimal = Random.Range(0, animalPrefabs.Length); // rand number animal prefab chooser
             GameObject newSpawn = animalPrefabs[randomAnimal]; // sets the new spawn
             Vector3 spawnPos = RandomSpawnpoint(); // set spawn pos of new spawn
             animalprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns the object
-            if (gameObject.CompareTag("Dog"))
+            if (animalprefab.CompareTag("Dog"))
             {
                 // removes dogs from animal count allowing freeflowing animals in theroy and unlimited dogs. dogs despawn after 5s or until dead
-                Destroy(gameObject, 55);
-                spawnCount--;
+                Destroy(animalprefab, 10);
+                spawnCount++;
             }
             else
             {
                 spawnCount++;
+
             }
             if (animator != null)
             {
@@ -84,24 +109,46 @@ public class Gamemode : MonoBehaviour
 
 
 
-        if (movementLimiter(animalprefab))
-          { 
-              foreach (var animalprefab in animalPrefabs)
-              {
-                  spawnCount--;
-                  
-                  Destroy(animalprefab);
-              }
-          }
+        if (movementLimiter(newSpawn))
+        {
+            foreach (var animal in animalPrefabs)
+            {
+                spawnCount--;
 
-      }
-    
+                Destroy(animal);
+            }
+        }
 
-   
-    public void AddPoints(int pointstoadd)
-    {
-        totalScore += pointstoadd;
+        
     }
+
+    void lossConditions()
+    {
+        // Check for game loss conditions
+        if (player.getPlayerHealth() <= 0 || stolenFood >= maxStolenFood || currentTime >= timeLimit)
+        {
+            // Set gameLost to true if any of the conditions are met
+            Debug.Log("Game Lost");
+            gameLost = true;
+        }
+        else
+        {
+            // Calculate the remaining time if the game is not lost
+            remainingTime = timeLimit - currentTime;
+
+            // Calculate the score based on the player's health, stolen food, hit animals, and remaining time
+            if (stolenFood != 0)
+            {
+                int scoreIncrease = Mathf.FloorToInt((player.getPlayerHealth() / stolenFood) * remainingTime + player.hitAnimals);
+                // Update the player's score
+                player.score += scoreIncrease;
+            }
+           
+        }
+    }
+
+
+
     bool movementLimiter(GameObject animal)
     {
         // Sets current position to new position capping movement between given ranges

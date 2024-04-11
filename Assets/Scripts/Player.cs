@@ -13,13 +13,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Scripts")]
+    public Gamemode gamemode;
     public FoodThrow foodthrow;
     public float speed;
     public float throwVel;
     
     float hozInput;
     int health;
-    public int maxHealth = 3;
+    public int maxHealth = 200;
     float verInput;
 
     [Header("Bounding Box vars")]
@@ -37,13 +38,16 @@ public class Player : MonoBehaviour
     public float projectileLifespan;
     int ammo;
     public bool clickedOnFood;
-    int score;
-    
+    public int score;
+    public int hitAnimals;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerAnim.enabled = true;
+        health = maxHealth;
     }
 
 
@@ -52,7 +56,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        
+
         // apply gravity to player 
 
         //transform.Translate(Vector3.down * Time.deltaTime);
@@ -83,14 +88,6 @@ public class Player : MonoBehaviour
             Quaternion desiredRotation = Quaternion.LookRotation(movDir, Vector3.up); // gets the desired rotation from move direction combined with the Y up vector 
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 5 * Time.deltaTime); //takes the current rotation, and moves it to the desired rotation i 
         }
-        if (Input.GetMouseButtonDown(1) && clickedOnFood)
-        {
-            //mouse 2 picks up 
-            //
-            
-            
-
-        }
         if (Input.GetMouseButtonDown(0) && ammo > 0)
         {
             //mouse 1 fires 
@@ -102,9 +99,9 @@ public class Player : MonoBehaviour
             
             
             //sets instance speed to 30 
-            heldObject.GetComponent<FoodThrow>().speed = 45;
+            heldObject.GetComponent<FoodThrow>().speed = 40;
             Destroy(heldObject, projectileLifespan);
-            ammo--;
+            ammo -= 1;
             
         }
         
@@ -120,7 +117,7 @@ public class Player : MonoBehaviour
 
 
         //teranry to determine running and walking speed 
-        float walkspeed = Input.GetKey(KeyCode.LeftShift) ? speed * 2.5f : speed; // sets walkspeed based on shift running or not
+        float walkspeed = Input.GetKey(KeyCode.LeftShift) ? speed * 2f : speed; // sets walkspeed based on shift running or not
 
         // moves left right, and handles animation state for walking running
         if (movDir.magnitude >= 0.1f) // checks if magnitude is more than anything
@@ -142,15 +139,13 @@ public class Player : MonoBehaviour
             setHealth(1);   
         }
     }
-    public void addPoints(int points) {
-        score += points;
-        
-    }
+    
     public void setHealth(int dam) 
     { 
         health -= dam;
         
     }
+   
     public int getPlayerHealth() { return health; }
     void movementLimiter()
     {
@@ -190,8 +185,15 @@ public class Player : MonoBehaviour
     }
     public void addAmmo()
     {
-        ammo++;
+        if (ammo < 1)
+        {
+            ammo++;
+        }
+    }
+    public int getAmmo()
+    {
+        return ammo;
     }
 
-    
+
 }
