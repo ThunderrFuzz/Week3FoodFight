@@ -23,8 +23,8 @@ public class Gamemode : MonoBehaviour
     public int foodCount;
     public int stolenFood;
     int maxStolenFood = 150;
-    int maxFood = 25;
-    int maxAI = 10;
+    int maxFood = 125;
+    int maxAI = 35;
 
     float timeLimit = 60f; // Set the time limit to 60 seconds
     float currentTime; // Current time remaining
@@ -80,9 +80,12 @@ public class Gamemode : MonoBehaviour
 
         }
 
+       
+
         //spawn animals
         if (spawnCount < maxAI)
         {
+
             int randomAnimal = Random.Range(0, animalPrefabs.Length); // rand number animal prefab chooser
             GameObject newSpawn = animalPrefabs[randomAnimal]; // sets the new spawn
             Vector3 spawnPos = RandomSpawnpoint(); // set spawn pos of new spawn
@@ -91,7 +94,7 @@ public class Gamemode : MonoBehaviour
             {
                 // removes dogs from animal count allowing freeflowing animals in theroy and unlimited dogs. dogs despawn after 5s or until dead
                 Destroy(animalprefab, 10);
-                spawnCount++;
+                
             }
             else
             {
@@ -105,21 +108,23 @@ public class Gamemode : MonoBehaviour
 
             }
         }
-
-
-
-
         if (movementLimiter(newSpawn))
         {
             foreach (var animal in animalPrefabs)
             {
+                Destroy(animalPrefab);
                 spawnCount--;
 
-                Destroy(animal);
+
             }
         }
 
-        
+
+
+
+
+
+
     }
 
     void lossConditions()
@@ -156,17 +161,17 @@ public class Gamemode : MonoBehaviour
 
         if (animal.transform.position.z < player.zMin)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, player.zMin);
+            
             return true;
         }
         if (animal.transform.position.x < player.xMin)
         {
-            transform.position = new Vector3(player.xMin, transform.position.y, transform.position.z );
+            
             return true;
         }
         if(animal.transform.position.x > player.xMax)
         {
-            transform.position = new Vector3(player.xMax, transform.position.y,  transform.position.z);
+            
             return true;
         }
         else
