@@ -18,6 +18,7 @@ public class FoodThrow : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
+        gamemode = FindObjectOfType<Gamemode>();
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class FoodThrow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dog") || other.gameObject.CompareTag("Animal"))
         {
-            //player.addPoints(5);
+            
             player.hitAnimals += 5;
             Destroy(other.gameObject);
             gamemode.spawnCount--;

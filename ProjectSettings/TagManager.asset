@@ -10,11 +10,12 @@ TagManager:
   - Projectile
   - Floor
   - Plate
+  - Despawner
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Despawner
   - Water
   - UI
   - Food

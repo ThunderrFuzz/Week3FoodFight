@@ -74,6 +74,7 @@ public class AI : MonoBehaviour
 
 
         }
+        
     }
 
     public void takeDamage(int dam)

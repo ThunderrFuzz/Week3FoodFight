@@ -24,7 +24,7 @@ public class Gamemode : MonoBehaviour
     public int stolenFood;
     int maxStolenFood = 150;
     int maxFood = 125;
-    int maxAI = 35;
+    int maxAI = 15;
 
     float timeLimit = 60f; // Set the time limit to 60 seconds
     float currentTime; // Current time remaining
@@ -49,9 +49,9 @@ public class Gamemode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-       
+
+        
 
         if (gameLost)
         {
@@ -90,34 +90,25 @@ public class Gamemode : MonoBehaviour
             GameObject newSpawn = animalPrefabs[randomAnimal]; // sets the new spawn
             Vector3 spawnPos = RandomSpawnpoint(); // set spawn pos of new spawn
             animalprefab = Instantiate(newSpawn, spawnPos, Quaternion.Euler(0f, 180f, 0f)); // spawns the object
+            //movementLimiter(animalprefab);
             if (animalprefab.CompareTag("Dog"))
             {
                 // removes dogs from animal count allowing freeflowing animals in theroy and unlimited dogs. dogs despawn after 5s or until dead
                 Destroy(animalprefab, 10);
-                
+
             }
             else
             {
                 spawnCount++;
-
             }
+
             if (animator != null)
             {
-                animator.SetFloat("Speed_f", 1f);
-                // increase increment of spawn count only for animals
-
+                animator.SetFloat("Speed_f", 1f);                
             }
         }
-        if (movementLimiter(newSpawn))
-        {
-            foreach (var animal in animalPrefabs)
-            {
-                Destroy(animalPrefab);
-                spawnCount--;
-
-
-            }
-        }
+       
+        
 
 
 
@@ -126,6 +117,7 @@ public class Gamemode : MonoBehaviour
 
 
     }
+   
 
     void lossConditions()
     {
@@ -144,41 +136,16 @@ public class Gamemode : MonoBehaviour
             // Calculate the score based on the player's health, stolen food, hit animals, and remaining time
             if (stolenFood != 0)
             {
-                int scoreIncrease = Mathf.FloorToInt((player.getPlayerHealth() / stolenFood) * remainingTime + player.hitAnimals);
+                int scoreIncrease = Mathf.Max(0, Mathf.FloorToInt(player.getPlayerHealth() + Mathf.Pow(remainingTime, player.hitAnimals) - stolenFood));
                 // Update the player's score
                 player.score += scoreIncrease;
             }
            
         }
     }
+  
 
 
-
-    bool movementLimiter(GameObject animal)
-    {
-        // Sets current position to new position capping movement between given ranges
-
-
-        if (animal.transform.position.z < player.zMin)
-        {
-            
-            return true;
-        }
-        if (animal.transform.position.x < player.xMin)
-        {
-            
-            return true;
-        }
-        if(animal.transform.position.x > player.xMax)
-        {
-            
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     Vector3 RandomSpawnpoint()
     {

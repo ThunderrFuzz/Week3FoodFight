@@ -167,6 +167,7 @@ MonoBehaviour:
   speed: 15
   player: {fileID: 0}
   animator: {fileID: 9553238}
+  gamemode: {fileID: 0}
 --- !u!195 &-6251113625674874811
 NavMeshAgent:
   m_ObjectHideFlags: 0
